@@ -1,0 +1,166 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API Service",
+    "version": "1.0.0",
+    "description": "API Service endpoints",
+    "contact": {
+      "email": "shrujal@peerbits.com",
+      "name": "Shrujal Shah"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/v1/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "item",
+      "description": "Items APIs"
+    }
+  ],
+  "paths": {
+    "/item/add": {
+      "post": {
+        "tags": ["item"],
+        "summary": "Add a item to the database",
+        "operationId": "item-add",
+        "requestBody": {
+          "description": "New user signing up",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DraftItemSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Item was added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DraftItemSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/item/all": {
+      "get": {
+        "tags": ["item"],
+        "summary": "Get all items in database",
+        "operationId": "item-get-all",
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ItemSchema"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/item/search": {
+      "get": {
+        "tags": ["item"],
+        "summary": "Search items by name",
+        "operationId": "item-search",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string",
+              "default": "hitchhiker"
+            },
+            "description": "String containing full name or partial name of the item"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ItemSchema"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DraftItemSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "The Hitchhiker's Guide to the Galaxy"
+          },
+          "rentPrice": {
+            "type": "number",
+            "example": "1.99"
+          },
+          "manufactureDate": {
+            "type": "number",
+            "example": "1611222194788"
+          },
+          "price": {
+            "type": "number",
+            "example": "10.99"
+          }
+        }
+      },
+      "ItemSchema": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/DraftItemSchema"
+          }
+        ],
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "5d7224d3b40b1a1a046697dd"
+          }
+        }
+      }
+    }
+  }
+}
