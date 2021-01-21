@@ -93,7 +93,7 @@ The application uses [winston](https://github.com/winstonjs/winston) as the defa
 │   ├── middleware
 │   │   └── handle-error-middleware.ts
 │   ├── models
-│   │   └── Book.ts
+│   │   └── Item.ts
 │   ├── public
 │   │   └── index.html
 │   ├── services
@@ -101,7 +101,7 @@ The application uses [winston](https://github.com/winstonjs/winston) as the defa
 │   │   └── password.ts
 │   ├── v1
 │   │   ├── controllers
-│   │   │   └── book
+│   │   │   └── item
 │   │   │       ├── add.ts
 │   │   │       ├── all.ts
 │   │   │       ├── index.ts
@@ -118,14 +118,13 @@ The application uses [winston](https://github.com/winstonjs/winston) as the defa
 │   ├── middleware
 │   │   └── handle-error-middleware.test.ts
 │   ├── models
-│   │   └── Book.test.ts
+│   │   └── Item.test.ts
 │   └── app.test.ts
 ├── .env
 ├── .env.example
 ├── .eslintrc.js
 ├── .gitignore
 ├── .prettierrc.js
-├── .travis.yml
 ├── Dockerfile
 ├── README.md
 ├── docker-compose.dev.yml
